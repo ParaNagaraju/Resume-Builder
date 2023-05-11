@@ -25,17 +25,25 @@
   font-weight: 500;
   font-size: 16px;
 }
-
+button {
+  border: 3px solid gray;
+  border-radius: 20%;
+  float: center;
+}
 .resume {
-  width: 800px;
+  width: 100%;
   height: auto;
   display: flex;
+  justify-content: center;
 }
-
+.resume1 {
+  display: flex;
+  border: 0.1px solid;
+}
 .resume .resume_left {
   width: 280px;
   background: #0bb5f4;
-  height: 1000px;
+  /* height: 1100px; */
 }
 
 .resume .resume_left .resume_profile {
@@ -64,10 +72,10 @@
   color: #b1eaff;
 }
 
-.resume .resume_item {
+/* .resume .resume_item {
   padding: 0px 0;
   border-bottom: 2px solid #b1eaff;
-}
+} */
 
 .resume .resume_left .resume_item:last-child,
 .resume .resume_right .resume_item:last-child {
@@ -104,7 +112,7 @@
 }
 
 .resume .resume_left ul li .data {
-  color: #b1eaff;
+  color: hsl(196, 65%, 3%);
 }
 
 .resume .resume_left .resume_skills ul li {
@@ -204,11 +212,30 @@
 }
 .work {
   width: 100%;
-  height: 180px;
+  /* height: 180px; */
   border: 2px solid hwb(0 94% 5%);
 }
 .certifi {
   border-bottom: 2px solid #b1eaff;
+}
+/* .edit-form {
+  border: 2px solid #b1eaff;
+  box-shadow: solid hwb(0 94% 5%) 5px 5px 5px 5px;
+} */
+.edit-form:hover {
+  transform: scale(1);
+}
+.input-fields {
+  width: 80%;
+  height: 35px;
+  border: 0.5px solid;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+
+.input-fields:focus {
+  outline-style: none;
+  outline: none;
 }
 
 /* .resume .resume_right .resume_hobby ul {

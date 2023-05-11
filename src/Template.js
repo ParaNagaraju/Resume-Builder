@@ -13,6 +13,7 @@ const Template = () => {
     "Lorem ipsum dolor sit, amet consectetur adipisicing elit ghfjjkdjk efkgmtjng tgygyuhni  nafgaraje vindod sainath"
   );
   const [work, setWork] = useState([]);
+  console.log("workz", work.length);
   const [workex, setWorkex] = useState([]);
 
   const [education, setEducation] = useState([]);
@@ -24,9 +25,19 @@ const Template = () => {
 
   const [certificate, setCertificate] = useState("CERTIFICATEL1\nCERTIFICATE2");
 
+  const [showCertificate, setShowcertificate] = useState(true);
+
+  const deleteHeading = () => {
+    setShowcertificate(false);
+  };
+
   const handleCertificatechange = (newCer) => {
     setCertificate(newCer);
   };
+
+  // const handleDelete = () => {
+  //   setCertificate("");
+  // };
   const changeHandler = (e) => {
     setTodos(e.target.value);
   };
@@ -76,10 +87,13 @@ const Template = () => {
   const handleProjectschange = (newProjects) => {
     setProjects(newProjects);
   };
+  const handleDelete = (index) => {
+    setWork((prevState) => prevState.filter((_, i) => i !== index));
+  };
 
   return (
     <div className="resume">
-      <div className="resume">
+      <div className="resume1">
         <div className="resume_left">
           <div className="resume_profile">
             <img src="https://i.imgur.com/eCijVBe.png" alt="profile_pic" />
@@ -87,11 +101,16 @@ const Template = () => {
           <div className="resume_content">
             <div className="resume_item resume_info">
               <div className="title">
-                <p className="bold">{text}</p>
-                <p className="regular" id="2">
-                  {role}
-                </p>
+                <center>
+                  <p className="bold">{text}</p>
+                </center>
               </div>
+              <p
+                id="2"
+                style={{ color: "white", fontSize: "18px", marginLeft: "10px" }}
+              >
+                {role}
+              </p>
               <div className="address">
                 <ul>
                   <li>
@@ -124,7 +143,15 @@ const Template = () => {
             </div>
             <div className="resume_item resume_skills">
               <div className="title" id="7">
-                <p className="bold">skill's</p>
+                <p
+                  style={{
+                    color: "white",
+                    fontSize: "18px",
+                    marginLeft: "10px",
+                  }}
+                >
+                  skill's
+                </p>
 
                 {skill.split("\n").map((line, index) => (
                   <ul key={index}>
@@ -133,21 +160,39 @@ const Template = () => {
                 ))}
               </div>
             </div>
-            <div className="certifi">
-              <div className="tittle">
-                <p className="bold" id="12">
-                  C E R T I F I C A T I O N 'S
-                </p>
-                {certificate.split("\n").map((line, index) => (
-                  <ul key={index}>
-                    <li>{line}</li>
-                  </ul>
-                ))}
+            {showCertificate && (
+              <div className="certifi">
+                <div className="tittle">
+                  <p
+                    style={{
+                      color: "white",
+                      fontSize: "18px",
+                      marginLeft: "10px",
+                    }}
+                    id="12"
+                  >
+                    C E R T I F I C A T I O N 'S
+                  </p>
+
+                  {certificate.split("\n").map((line, index) => (
+                    <ul key={index}>
+                      <li>{line}</li>
+                    </ul>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
             <div className="resume_item resume_social">
               <div className="title" id="8">
-                <p className="bold">Social</p>
+                <p
+                  style={{
+                    color: "white",
+                    fontSize: "18px",
+                    marginLeft: "10px",
+                  }}
+                >
+                  Social
+                </p>
                 {social.split("\n").map((line, index) => (
                   <ul key={index}>
                     <div>
@@ -176,31 +221,34 @@ const Template = () => {
               <p className="bold" onChange={changeHandler1}>
                 Work Experience
               </p>
-
-              {work.length !== 0 ? (
-                work.map((ed, ind) => (
-                  <div key={ind}>
-                    <ul>
-                      <div>
-                        <li>
-                          {ed.startDate1} - {ed.endDate1}
-                        </li>
-                      </div>
-                      <li>
-                        <div> {ed.role}</div>
-                      </li>
-                      <li>
-                        <div> {ed.company}</div>
-                      </li>
-                      <li>
-                        <div>{ed.summary}</div>
-                      </li>
-                    </ul>
-                    <hr></hr>
-                  </div>
-                ))
-              ) : (
-                <>
+              <div>
+                {work.length !== 0 ? (
+                  <>
+                    {work.map((ed, ind) => {
+                      return (
+                        <div key={ind}>
+                          <ul>
+                            <div>
+                              <li>
+                                {ed.startDate1} - {ed.endDate1}
+                              </li>
+                            </div>
+                            <li>
+                              <div> {ed.role}</div>
+                            </li>
+                            <li>
+                              <div> {ed.company}</div>
+                            </li>
+                            <li>
+                              <div>{ed.summary}</div>
+                            </li>
+                          </ul>
+                          <hr></hr>
+                        </div>
+                      );
+                    })}
+                  </>
+                ) : (
                   <ul>
                     <li>
                       <div>start Date - end Date</div>
@@ -215,8 +263,8 @@ const Template = () => {
                       <div>summary</div>
                     </li>
                   </ul>
-                </>
-              )}
+                )}
+              </div>
             </div>
           </div>
           <div className="resume_item resume_education">
@@ -283,37 +331,40 @@ const Template = () => {
           </div>
         </div>
       </div>
-      <div className="body-right">
-        <Edit
-          text={text}
-          onTextChange={handleTextchange}
-          role={role}
-          onRolechange={handleRolechange}
-          address={address}
-          handleAddresschange={handleAddresschange}
-          phone={phone}
-          handlePhonechange={handlePhonechange}
-          email={email}
-          handleEmailchange={handleEmailchange}
-          skill={skill}
-          handleSkillchange={handleSkillchange}
-          social={social}
-          handleSocialchange={handleSocialchange}
-          about={about}
-          handleAboutchange={handleAboutchange}
-          work={work}
-          handleWorkchange={handleWorkchange}
-          education={education}
-          // handleEducationchange={changeHandler}
-          submitHandler={submitHandler}
-          submitHandler1={sumbmitHandler1}
-          // deleteHandler={deleteHandler}
-          projects={projects}
-          handleProjectschange={handleProjectschange}
-          certificate={certificate}
-          handleCertificatechange={handleCertificatechange}
-        />
-      </div>
+      {/* <div className="right-edit-btn"> */}
+      <Edit
+        text={text}
+        onTextChange={handleTextchange}
+        role={role}
+        onRolechange={handleRolechange}
+        address={address}
+        handleAddresschange={handleAddresschange}
+        phone={phone}
+        handlePhonechange={handlePhonechange}
+        email={email}
+        handleEmailchange={handleEmailchange}
+        skill={skill}
+        handleSkillchange={handleSkillchange}
+        social={social}
+        handleSocialchange={handleSocialchange}
+        about={about}
+        handleAboutchange={handleAboutchange}
+        // work={work}
+        // handleWorkchange={handleWorkchange}
+        education={education}
+        // handleEducationchange={changeHandler}
+        submitHandler={submitHandler}
+        submitHandler1={sumbmitHandler1}
+        // deleteHandler={deleteHandler}
+        deleteHeading={deleteHeading}
+        projects={projects}
+        handleProjectschange={handleProjectschange}
+        certificate={certificate}
+        handleCertificatechange={handleCertificatechange}
+        pSetWork={setWork}
+        // handleDelete={setWork}
+      />
+      {/* </div> */}
     </div>
   );
 };
