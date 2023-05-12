@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 
 const Edit = (props) => {
-  const [startDate, setStartDate] = useState("2015");
-  const [endDate, setEndDate] = useState("2018");
-  const [college, setCollege] = useState("college");
-  const [degree, setDegree] = useState("degree");
-  const [specialization, setSpecialization] = useState("specialization");
+  // const [startDate, setStartDate] = useState("2015");
+  // const [endDate, setEndDate] = useState("2018");
+  // const [college, setCollege] = useState("college");
+  // const [degree, setDegree] = useState("degree");
+  // const [specialization, setSpecialization] = useState("specialization");
+  const [education, setEducation] = useState({
+    startDate: "",
+    endDate: "",
+    college: "",
+    // degree: "",
+    specialization: "",
+  });
+  const [educationList, setEducationList] = useState([]);
 
-  // const [startDate1, setStartDate1] = useState("2015");
-  // const [endDate1, setEndDate1] = useState("2018");
-  // const [role, setRole] = useState("role");
-  // const [company, setCompany] = useState("company Name");
-  // const [summary, setSummary] = useState("summary");
   const [work, setWork] = useState({
     startDate1: "",
     endDate1: "",
@@ -59,13 +62,8 @@ const Edit = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    props.submitHandler({
-      startDate,
-      endDate,
-      degree,
-      college,
-      specialization,
-    });
+    setEducationList([...educationList, education]);
+    props.psetEducation([...educationList, education]);
   };
   const sumbmitHandler1 = (e) => {
     e.preventDefault();
@@ -81,6 +79,14 @@ const Edit = (props) => {
     // });
     // props.submitHandler1([workList]);
   };
+
+  function deleteWork1(e, ind) {
+    e.preventDefault();
+    console.log("event", e);
+    console.log("index", ind);
+    setEducationList(educationList.filter((_, i) => i !== ind));
+    props.psetEducation(educationList.filter((_, i) => i !== ind));
+  }
 
   function deleteWork(e, ind) {
     e.preventDefault();
@@ -159,7 +165,6 @@ const Edit = (props) => {
           />
           <label>
             <textarea
-              className="textarea-input"
               name="skills"
               onChange={changeSkillas}
               rows="3"
@@ -171,7 +176,6 @@ const Edit = (props) => {
           <label>
             {/* CERTIFICATION: */}
             <textarea
-              className="textarea-input"
               name="certificate"
               onChange={changeCeras}
               rows="3"
@@ -186,10 +190,10 @@ const Edit = (props) => {
           <label>
             {/* Social */}
             <textarea
-              name="Social"
-              onChange={changeSocialas}
               rows="3"
               cols="40"
+              name="Social"
+              onChange={changeSocialas}
               placeholder="social 
               {use enter to add multiple links}"
             ></textarea>
@@ -308,51 +312,102 @@ const Edit = (props) => {
               <input
                 type="date"
                 style={{ width: "35%", height: "25px" }}
-                onChange={(e) => setStartDate(e.target.value)}
+                onChange={(e) =>
+                  setEducation((prevWork) => ({
+                    ...prevWork,
+                    startDate: e.target.value,
+                  }))
+                }
                 placeholder="from"
               ></input>
               <input
                 type="date"
                 style={{ width: "35%", marginLeft: "10px", height: "25px" }}
-                onChange={(e) => setEndDate(e.target.value)}
+                onChange={(e) =>
+                  setEducation((prevWork) => ({
+                    ...prevWork,
+                    endDate: e.target.value,
+                  }))
+                }
                 placeholder="to"
               ></input>
-              <input
+              {/* <input
                 type="text"
                 style={{ margin: "1%", height: "25px" }}
                 placeholder="degree"
-                onChange={(e) => setDegree(e.target.value)}
-              ></input>
+                onChange={(e) =>
+                  setEducation((prevWork) => ({
+                    ...prevWork,
+                    degree: e.target.value,
+                  }))
+                }
+              ></input> */}
               <br></br>
               <input
                 type="text"
                 style={{ margin: "2%", height: "25px" }}
-                onChange={(e) => setCollege(e.target.value)}
+                onChange={(e) =>
+                  setEducation((prevWork) => ({
+                    ...prevWork,
+                    college: e.target.value,
+                  }))
+                }
                 placeholder="university or college"
               ></input>
               <br></br>
               <input
                 type="text"
                 style={{ margin: "2%", height: "25px" }}
-                onChange={(e) => setSpecialization(e.target.value)}
+                onChange={(e) =>
+                  setEducation((prevWork) => ({
+                    ...prevWork,
+                    specialization: e.target.value,
+                  }))
+                }
                 placeholder="specialization"
               ></input>
             </label>
+
+            {educationList.map((ed, ind) => {
+              console.log("index", ind);
+              return (
+                <div key={ind}>
+                  <ul>
+                    <div>
+                      <li>
+                        {ed.startDate} - {ed.endDate}
+                      </li>
+                    </div>
+                    {/* <li>
+                      <div> {ed.degree}</div>
+                    </li> */}
+                    <li>
+                      <div> {ed.college}</div>
+                    </li>
+                    <li>
+                      <div>{ed.specialization}</div>
+                    </li>
+                  </ul>
+                  <button onClick={(e) => deleteWork1(e, ind)}>delete</button>
+                </div>
+              );
+            })}
+
             <input
               type="submit"
-              style={{ height: "40px" }}
+              style={{ height: "30px" }}
               onClick={(e) => submitHandler(e)}
               value="Add"
               name="Add"
             ></input>
 
             {/* <input
-            type="submit"
-            value="delete"
-            style={{ height: "40px" }}
-            name="Add"
-            onClick={(index) => deleteHandler(index)}
-          ></input> */}
+              type="submit"
+              value="delete"
+              style={{ height: "40px" }}
+              name="Add"
+              onClick={(index) => deleteHandler(index)}
+            ></input> */}
           </div>
           <label>
             <textarea

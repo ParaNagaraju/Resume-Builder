@@ -35,9 +35,6 @@ const Template = () => {
     setCertificate(newCer);
   };
 
-  // const handleDelete = () => {
-  //   setCertificate("");
-  // };
   const changeHandler = (e) => {
     setTodos(e.target.value);
   };
@@ -54,10 +51,6 @@ const Template = () => {
     setWork([...work, e]);
   };
 
-  // const deleteHandler = (indexvalue) => {
-  //   const newedu = education.filter((made, index) => index !== indexvalue);
-  //   setEducation(newedu);
-  // };
   const handleTextchange = (newText) => {
     setText(newText);
   };
@@ -80,23 +73,21 @@ const Template = () => {
   const handleAboutchange = (newAbout) => {
     setAbout(newAbout);
   };
-  const handleWorkchange = (newWork) => {
-    setWork(newWork);
-  };
+  // const handleWorkchange = (newWork) => {
+  //   setWork(newWork);
+  // };
 
   const handleProjectschange = (newProjects) => {
     setProjects(newProjects);
   };
-  const handleDelete = (index) => {
-    setWork((prevState) => prevState.filter((_, i) => i !== index));
-  };
+  
 
   return (
     <div className="resume">
       <div className="resume1">
         <div className="resume_left">
           <div className="resume_profile">
-            <img src="https://i.imgur.com/eCijVBe.png" alt="profile_pic" />
+            <img src="https://media.istockphoto.com/id/1154642632/photo/close-up-portrait-of-brunette-woman.jpg?b=1&s=612x612&w=0&k=20&c=7hgSq1L2mpIbpuuw00KELApMpmZfBkZ-RBxn3Qps5zQ=" style={{width:"280px",height:"250px"}} />
           </div>
           <div className="resume_content">
             <div className="resume_item resume_info">
@@ -145,12 +136,14 @@ const Template = () => {
               <div className="title" id="7">
                 <p
                   style={{
-                    color: "white",
+                    color: "black",
                     fontSize: "18px",
                     marginLeft: "10px",
+                    backgroundColor: "white",
+                    width: "90%",
                   }}
                 >
-                  skill's
+                  SKILLS
                 </p>
 
                 {skill.split("\n").map((line, index) => (
@@ -165,9 +158,11 @@ const Template = () => {
                 <div className="tittle">
                   <p
                     style={{
-                      color: "white",
+                      color: "black",
                       fontSize: "18px",
                       marginLeft: "10px",
+                      backgroundColor: "white",
+                      width: "90%",
                     }}
                     id="12"
                   >
@@ -186,9 +181,11 @@ const Template = () => {
               <div className="title" id="8">
                 <p
                   style={{
-                    color: "white",
+                    color: "black",
                     fontSize: "18px",
                     marginLeft: "10px",
+                    backgroundColor: "white",
+                    width: "90%",
                   }}
                 >
                   Social
@@ -207,7 +204,16 @@ const Template = () => {
         <div className="resume_right">
           <div className="resume_item resume_about">
             <div className="title" id="9">
-              <p className="bold">About us</p>
+              <p
+                className="bold"
+                style={{
+                  backgroundColor: "black",
+                  width: "100%",
+                  color: "white",
+                }}
+              >
+                Profile
+              </p>
             </div>
 
             {about.split("\n").map((line, index) => (
@@ -218,7 +224,15 @@ const Template = () => {
           </div>
           <div className="resume_item resume_work">
             <div className="title" id="10">
-              <p className="bold" onChange={changeHandler1}>
+              <p
+                className="bold"
+                onChange={changeHandler1}
+                style={{
+                  backgroundColor: "black",
+                  width: "100%",
+                  color: "white",
+                }}
+              >
                 Work Experience
               </p>
               <div>
@@ -228,20 +242,14 @@ const Template = () => {
                       return (
                         <div key={ind}>
                           <ul>
-                            <div>
-                              <li>
-                                {ed.startDate1} - {ed.endDate1}
-                              </li>
+                            <div className="role">
+                              {ed.role} ({ed.startDate1} - {ed.endDate1})
                             </div>
-                            <li>
-                              <div> {ed.role}</div>
-                            </li>
-                            <li>
-                              <div> {ed.company}</div>
-                            </li>
-                            <li>
-                              <div>{ed.summary}</div>
-                            </li>
+                            <div> {ed.company}</div>
+
+                            <div>
+                              <li>{ed.summary}</li>
+                            </div>
                           </ul>
                           <hr></hr>
                         </div>
@@ -250,18 +258,24 @@ const Template = () => {
                   </>
                 ) : (
                   <ul>
-                    <li>
-                      <div>start Date - end Date</div>
-                    </li>
-                    <li>
-                      <div>role</div>
-                    </li>
-                    <li>
-                      <div>company</div>
-                    </li>
-                    <li>
-                      <div>summary</div>
-                    </li>
+                    <div className="role">
+                      software-Engineer(start Date - end Date)
+                    </div>
+                    {/* <div>start Date - end Date</div> */}
+
+                    <div>company</div>
+
+                    <div>
+                      <li>
+                        Developed and maintained web applications using React,
+                        Node.js, and MongoDB. Collaborated with product managers
+                        and designers to define project requirements and
+                        priorities. Led a team of three junior engineers and
+                        provided mentorship and code reviews. Implemented
+                        automated testing and continuous integration processes
+                        to improve code quality and deployment speed.
+                      </li>
+                    </div>
                   </ul>
                 )}
               </div>
@@ -269,47 +283,48 @@ const Template = () => {
           </div>
           <div className="resume_item resume_education">
             <div className="title" id="11">
-              <p className="bold" onChange={changeHandler}>
+              <p
+                className="bold"
+                onChange={changeHandler}
+                style={{
+                  backgroundColor: "black",
+                  width: "100%",
+                  color: "white",
+                }}
+              >
                 education
               </p>
               {education.length !== 0 ? (
-                education.map((edu, ind) => (
-                  <div key={ind}>
-                    <ul>
-                      <div>
-                        <li>
-                          {edu.startDate} - {edu.endDate}
-                        </li>
-                      </div>
+                <>
+                  {education.map((edu, ind) => {
+                    return (
+                      <div key={ind}>
+                        <ul>
+                          <div className="role">{edu.specialization}</div>
+                          <div>
+                            {edu.startDate} - {edu.endDate}
+                          </div>
 
-                      <li>
-                        <div> {edu.degree}</div>
-                      </li>
-                      <li>
-                        <div> {edu.college}</div>
-                      </li>
-                      <li>
-                        <div>{edu.specialization}</div>
-                      </li>
-                    </ul>
-                    <hr></hr>
-                  </div>
-                ))
+                          {/* <div> {edu.degree}</div> */}
+                          <div> {edu.college}</div>
+
+                        </ul>
+                        <hr></hr>
+                      </div>
+                    );
+                  })}
+                </>
               ) : (
                 <div>
                   <ul>
                     <li>
-                      <div>start Date - end Date</div>
+                    <div className="role">
+                      Bachelor of Science in Computer Science
+                    </div>
                     </li>
-                    <li>
-                      <div>degree</div>
-                    </li>
-                    <li>
-                      <div>college</div>
-                    </li>
-                    <li>
-                      <div>specialization</div>
-                    </li>
+                    <div>start Date - end Date</div>
+                    {/* <div> degree</div> */}
+                    <div>University of Cambridge,Landon</div>
                   </ul>
                 </div>
               )}
@@ -318,14 +333,20 @@ const Template = () => {
 
           <div className="resume_hobby">
             <div className="title">
-              <p className="bold" id="12">
+              <p
+                className="bold"
+                id="12"
+                style={{
+                  backgroundColor: "black",
+                  width: "100%",
+                  color: "white",
+                }}
+              >
                 Projects
               </p>
 
               {projects.split("\n").map((line, index) => (
-                <ul key={index}>
-                  <li>{line}</li>
-                </ul>
+                <ul key={index}>{line}</ul>
               ))}
             </div>
           </div>
@@ -362,6 +383,7 @@ const Template = () => {
         certificate={certificate}
         handleCertificatechange={handleCertificatechange}
         pSetWork={setWork}
+        psetEducation={setEducation}
         // handleDelete={setWork}
       />
       {/* </div> */}
