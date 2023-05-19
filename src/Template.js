@@ -73,9 +73,7 @@ const Template = () => {
   const handleAboutchange = (newAbout) => {
     setAbout(newAbout);
   };
-  // const handleWorkchange = (newWork) => {
-  //   setWork(newWork);
-  // };
+ 
 
   const handleProjectschange = (newProjects) => {
     setProjects(newProjects);
@@ -87,7 +85,8 @@ const Template = () => {
       <div className="resume1">
         <div className="resume_left">
           <div className="resume_profile">
-            <img src="https://media.istockphoto.com/id/1154642632/photo/close-up-portrait-of-brunette-woman.jpg?b=1&s=612x612&w=0&k=20&c=7hgSq1L2mpIbpuuw00KELApMpmZfBkZ-RBxn3Qps5zQ=" style={{width:"280px",height:"250px"}} />
+            <img src="https://media.istockphoto.com/id/1154642632/photo/close-up-portrait-of-brunette-woman.jpg?b=1&s=612x612&w=0&k=20&c=7hgSq1L2mpIbpuuw00KELApMpmZfBkZ-RBxn3Qps5zQ="
+             />
           </div>
           <div className="resume_content">
             <div className="resume_item resume_info">
@@ -305,7 +304,6 @@ const Template = () => {
                             {edu.startDate} - {edu.endDate}
                           </div>
 
-                          {/* <div> {edu.degree}</div> */}
                           <div> {edu.college}</div>
 
                         </ul>
@@ -352,7 +350,6 @@ const Template = () => {
           </div>
         </div>
       </div>
-      {/* <div className="right-edit-btn"> */}
       <Edit
         text={text}
         onTextChange={handleTextchange}

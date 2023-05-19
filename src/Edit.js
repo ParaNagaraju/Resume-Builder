@@ -1,16 +1,10 @@
 import React, { useState } from "react";
 
 const Edit = (props) => {
-  // const [startDate, setStartDate] = useState("2015");
-  // const [endDate, setEndDate] = useState("2018");
-  // const [college, setCollege] = useState("college");
-  // const [degree, setDegree] = useState("degree");
-  // const [specialization, setSpecialization] = useState("specialization");
   const [education, setEducation] = useState({
     startDate: "",
     endDate: "",
     college: "",
-    // degree: "",
     specialization: "",
   });
   const [educationList, setEducationList] = useState([]);
@@ -27,13 +21,6 @@ const Edit = (props) => {
 
   const [showForm, setShowForm] = useState(false);
 
-  // const handleDelete = (event, index) => {
-  //   console.log("event", event);
-  //   console.log("index", index);
-  //   event.preventDefault();
-  //   // setWorkList(workList.filter((_, i) => i !== index));
-  //   // props.deleteWork(workList.filter((_, i) => i !== index));
-  // };
   const changeNameas = (e) => {
     props.onTextChange(e.target.value);
   };
@@ -70,14 +57,6 @@ const Edit = (props) => {
     setWorkList([...workList, work]);
     props.pSetWork([...workList, work]);
 
-    // props.submitHandler1({
-    //   startDate1,
-    //   endDate1,
-    //   role,
-    //   company,
-    //   summary,
-    // });
-    // props.submitHandler1([workList]);
   };
 
   function deleteWork1(e, ind) {
@@ -95,10 +74,7 @@ const Edit = (props) => {
     setWorkList(workList.filter((_, i) => i !== ind));
     props.pSetWork(workList.filter((_, i) => i !== ind));
 
-    // workList.splice(ind, 1);
-    // console.log("inside worklist", workList);
-    // setWorkList(workList);
-    // props.handleDelete(e.target.value);
+   
   }
   const changeProjectsas = (e) => {
     props.handleProjectschange(e.target.value);
@@ -331,17 +307,6 @@ const Edit = (props) => {
                 }
                 placeholder="to"
               ></input>
-              {/* <input
-                type="text"
-                style={{ margin: "1%", height: "25px" }}
-                placeholder="degree"
-                onChange={(e) =>
-                  setEducation((prevWork) => ({
-                    ...prevWork,
-                    degree: e.target.value,
-                  }))
-                }
-              ></input> */}
               <br></br>
               <input
                 type="text"
@@ -378,9 +343,7 @@ const Edit = (props) => {
                         {ed.startDate} - {ed.endDate}
                       </li>
                     </div>
-                    {/* <li>
-                      <div> {ed.degree}</div>
-                    </li> */}
+                   
                     <li>
                       <div> {ed.college}</div>
                     </li>
@@ -401,13 +364,7 @@ const Edit = (props) => {
               name="Add"
             ></input>
 
-            {/* <input
-              type="submit"
-              value="delete"
-              style={{ height: "40px" }}
-              name="Add"
-              onClick={(index) => deleteHandler(index)}
-            ></input> */}
+           
           </div>
           <label>
             <textarea
